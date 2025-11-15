@@ -1,0 +1,40 @@
+.wrapper { max-width: 980px; margin: 20px auto; padding: 0 12px; }
+.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.title { margin:0; }
+.logoutBtn { background:#fee2e2; border:1px solid #fecaca; padding:8px 12px; border-radius:10px; cursor:pointer; }
+
+.card { background:#fff; border-radius:14px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.row { display:flex; gap:8px; padding:6px 0; border-bottom:1px solid #f3f4f6; }
+.row:last-child { border-bottom:0; }
+.label { width:140px; color:#6b7280; }
+.value { flex:1; }
+.points .value { font-weight:600; }
+
+.actions { display:flex; gap:10px; margin:12px 0 18px; }
+.btn { background:#f3f4f6; border:1px solid #e5e7eb; padding:8px 12px; border-radius:10px; cursor:pointer; }
+.loading { padding:30px; text-align:center; }
+.error { color:crimson; margin-top:10px; }
+
+.ordersCard { margin-top: 16px; padding: 16px; background:#fff; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.ordersHeader { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.refreshBtn { border:1px solid #ddd; background:#fafafa; padding:6px 10px; border-radius:8px; cursor:pointer; }
+.muted { color:#6b7280; }
+
+.table { width:100%; border-collapse:collapse; font-size:.95rem; }
+.table th, .table td { text-align:left; padding:10px 8px; border-bottom:1px solid #eee; }
+
+.badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:.8rem; text-transform:capitalize; }
+.st_pending_payment, .st_pending { background:#fff7e6; color:#b45309; }
+.st_approved { background:#e6fffa; color:#047857; }
+.st_rejected { background:#fee2e2; color:#b91c1c; }
+.st_cancelled { background:#f3f4f6; color:#6b7280; }
+
+.linkBtn { background:none; border:none; padding:0; color:#2563eb; cursor:pointer; text-decoration:underline; }
+
+.detailsBox { margin-top:14px; padding:12px; background:#fafafa; border:1px solid #eee; border-radius:10px; }
+.itemsList { list-style:none; margin:0; padding:0; }
+.itemRow { display:grid; grid-template-columns:1fr auto auto auto; gap:10px; padding:6px 0; border-bottom:1px dashed #e5e7eb; }
+.itemRow:last-child { border-bottom:0; }
+.itemTitle { font-weight:500; }
+.itemQty { color:#6b7280; }
+.itemPrice, .itemSub { font-variant-numeric: tabular-nums; }

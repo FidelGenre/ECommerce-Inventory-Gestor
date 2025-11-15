@@ -1,0 +1,123 @@
+:root {
+    --coffee-900: #3a2a1b;
+    --coffee-800: #4b3624;
+    --coffee-700: #5d4129;
+    --coffee-600: #745131;
+    --coffee-400: #a77f53;
+    --coffee-300: #c49b6c;
+    --coffee-100: #f3e6d3;
+    --bg: #faf7f2;
+    --danger: #d23c3c;
+    --radius: 12px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    background-color: #f5e6cc;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .wrapper {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .title {
+    font-size: 26px;
+    color: var(--coffee-700);
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .input {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--coffee-100);
+    background: #fffdfa;
+    outline: none;
+    font-size: 15px;
+    transition: all 0.2s ease;
+  }
+  .input::placeholder {
+    color: #9a8f86;
+  }
+  .input:focus {
+    border-color: var(--coffee-300);
+    box-shadow: 0 0 0 3px rgba(196, 155, 108, 0.25);
+  }
+  
+  .submit {
+    margin-top: 6px;
+    border: none;
+    background: linear-gradient(180deg, var(--coffee-300), var(--coffee-600));
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    box-shadow: 0 8px 18px rgba(116, 81, 49, 0.18);
+  }
+  .submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(116, 81, 49, 0.22);
+  }
+  .submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .error {
+    color: var(--danger);
+    font-weight: 700;
+    margin: 4px 0;
+  }
+  
+  .linkText {
+    margin-top: 16px;
+    color: var(--coffee-700);
+    font-size: 14px;
+  }
+  
+  .link {
+    color: var(--coffee-600);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .link:hover {
+    color: var(--coffee-400);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

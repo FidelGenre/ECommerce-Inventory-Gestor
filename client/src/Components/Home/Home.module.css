@@ -1,0 +1,142 @@
+.home {
+    display: flex;
+    align-items: center;
+    padding: 4% 10%;
+    background-color: #f5e6cc;
+    gap: 40px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .content {
+    max-width: 100%;
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: #4b2e05;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .paragraph {
+    font-size: 1.2rem;
+    color: #7b4f27;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .primaryBtn {
+    padding: 12px 25px;
+    background-color: #4b2e05;
+    color: #f5e6cc;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .primaryBtn:hover {
+    background-color: #7b4f27;
+  }
+  
+  .imageContainer {
+    max-width: 100%;
+  }
+  
+  .logo {
+    width: 90%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  .featuresSection {
+    background-color: #e3cba5;
+    padding: 3% 0;
+    text-align: center;
+  }
+  
+  .sectionTitle {
+    color: #4b2e05;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+  }
+  
+  .cardsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: #fffaf2;
+    padding: 60px 40px;
+    width: 24%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  .card h3 {
+    color: #4b2e05;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .card p {
+    color: #7b4f27;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 1024px) {
+    .home {
+      flex-direction: column;
+      text-align: center;
+      padding: 6% 8%;
+    }
+  
+    .content {
+      padding: 0;
+    }
+  
+    .title {
+      font-size: 2.2rem;
+    }
+  
+    .paragraph {
+      font-size: 1rem;
+    }
+  
+    .card {
+      width: 90%;
+      padding: 30px;
+    }
+  
+    .primaryBtn {
+      width: 100%;
+      padding: 14px;
+    }
+
+    .featuresSection{
+      padding: 6% 0;
+    }
+  }
+  

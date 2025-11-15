@@ -1,0 +1,63 @@
+# ===============================
+# Node.js / Express Backend
+# ===============================
+
+# Dependencias
+node_modules/
+
+# Entornos
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Builds / cache
+dist/
+build/
+.cache/
+.tmp/
+coverage/
+.next/
+out/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Archivos temporales
+*.pid
+*.seed
+*.pid.lock
+
+# Test
+jest-html-reporters-*.html
+test-results/
+coverage/
+
+# Datos locales o mocks
+/data/*.json
+mock-data/
+uploads/
+public/images/
+
+# PM2 y otros managers
+pids
+logs/
+*.pid
+*.seed
+
+# Docker
+docker-compose.override.yml
+.docker/
