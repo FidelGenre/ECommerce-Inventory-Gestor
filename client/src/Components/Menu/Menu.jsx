@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styles from "./Menu.module.css";
 import { useCart } from "../Cart/CartContext";
+import { fetchJSON } from "../../lib/http";
 
 const TARGET_TOTAL = 12; // máximo de productos a mostrar
 
@@ -9,14 +10,11 @@ export default function Menu() {
   const [beans, setBeans] = useState([]);
   const { cart, addToCart } = useCart();
 
-  const API_URL = import.meta.env.VITE_API_URL + "/beans";
-
   useEffect(() => {
-    fetch(API_URL, { credentials: "include" })
-      .then((res) => res.json())
+    fetchJSON("/beans")
       .then((data) => setBeans(Array.isArray(data) ? data : []))
       .catch((err) => console.error("Error fetching beanstype:", err));
-  }, [API_URL]);
+  }, []);
 
   const getQuantity = (id) => {
     const item = cart.find((i) => i.id === id);
@@ -28,23 +26,21 @@ export default function Menu() {
       typeof bean.price_cents === "number"
         ? bean.price_cents
         : Math.round((bean.price ?? 0) * 100);
+
     return (cents / 100).toLocaleString("es-AR", {
       style: "currency",
       currency: "ARS",
     });
   };
 
-  // 👉 Solo productos “visibles” (price_cents > 0), ordenados por id
+  // 👉 Mostrar sólo productos visibles (precio > 0)
   const visibleBeans = useMemo(() => {
     let list = Array.isArray(beans) ? [...beans] : [];
 
-    // Consideramos “oculto” todo lo que tenga precio 0 o null
     list = list.filter((b) => Number(b.price_cents ?? 0) > 0);
 
-    // Orden simple por id (puedes cambiar a name si querés)
     list.sort((a, b) => Number(a.id ?? 0) - Number(b.id ?? 0));
 
-    // Limitamos a 12, como antes
     return list.slice(0, TARGET_TOTAL);
   }, [beans]);
 
@@ -87,8 +83,6 @@ export default function Menu() {
                 Stock: {stock - qtyInCart}/{stock}
               </div>
             )}
-
-
 
             <div className={styles.footer}>
               <span className={styles.price}>{formatPrice(bean)}</span>
