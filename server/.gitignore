@@ -50,7 +50,6 @@ coverage/
 /data/*.json
 mock-data/
 uploads/
-public/images/
 
 # PM2 y otros managers
 pids
