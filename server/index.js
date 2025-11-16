@@ -28,18 +28,9 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 const MP_PUBLIC_BASE_URL = process.env.MP_PUBLIC_BASE_URL || "";
 
 /* ================== TRUST PROXY ================== */
-// Necesario para cookies secure en Render
 app.set("trust proxy", 1);
 
-/* ================== CORS - CONFIG CORRECTA ================== */
-/*
-   IMPORTANTE:
-   Safari Móvil bloquea cookies si:
-   - el origin no coincide EXACTO
-   - hay 2 headers ACAO distintos
-   - SameSite=None sin secure
-*/
-
+/* ================== CORS ================== */
 const allowedOrigins = [
   FRONTEND_URL,
   "http://localhost:5173",
@@ -56,17 +47,11 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true, // NECESARIO para enviar cookies
+    credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-/*  
-  ⚠️ IMPORTANTE:
-  Se eliminó totalmente el FIX manual que sobrescribía el ACAO
-  porque ROMPÍA SAFARI MÓVIL.
-*/
 
 /* ================== PARSERS ================== */
 app.use(express.json());
@@ -79,11 +64,14 @@ app.get("/favicon.ico", (_req, res) => res.sendStatus(204));
 /* ================== STATIC IMAGES ================== */
 app.use("/images", express.static(path.join(__dirname, "public", "images")));
 
+/* ============================================================
+      🔥 TODAS LAS IMÁGENES USARÁN coffeeall.png 🔥
+============================================================ */
 function withImageURL(item) {
   const base = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
   return {
     ...item,
-    image: item.image ? `${base}/images/${item.image}` : null,
+    image: `${base}/images/coffeeall.png`,
   };
 }
 
@@ -92,7 +80,7 @@ function withImageURL(item) {
 // Healthcheck
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
-// Catálogo de granos
+// Catálogo para el frontend
 app.get("/api/beans", async (_req, res) => {
   try {
     const result = await pool.query(`
@@ -103,7 +91,7 @@ app.get("/api/beans", async (_req, res) => {
         b.origin, 
         b.roast_level,
         b.price_cents, 
-        COALESCE(b.image, 'coffeeall.png') AS image,
+        b.image,
         COALESCE(i.stock, 0) AS stock, 
         COALESCE(i.min_stock, 0) AS min_stock
       FROM beanstype b
@@ -126,16 +114,16 @@ app.post("/api/beans", async (req, res) => {
     origin,
     roast_level,
     price_cents,
-    image = "coffeeall.png",
     stock = 0,
     min_stock = 0,
   } = req.body;
 
   try {
+    // SIEMPRE guardamos coffeeall.png
     const inserted = await pool.query(
       `INSERT INTO beanstype (name, description, origin, roast_level, price_cents, image)
-       VALUES ($1,$2,$3,$4,$5,$6) RETURNING *`,
-      [name, description, origin, roast_level, price_cents, image]
+       VALUES ($1,$2,$3,$4,$5,'coffeeall.png') RETURNING *`,
+      [name, description, origin, roast_level, price_cents]
     );
 
     const bean = inserted.rows[0];
