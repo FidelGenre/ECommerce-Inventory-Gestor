@@ -37,33 +37,48 @@ function Header({ onCartClick }) {
 
   return (
     <header className={styles.header}>
+      {/* ------------ LOGO ------------ */}
       <div className={styles.logo}>
         <span>Coffee Beans</span>
       </div>
 
+      {/* ------------ NAV ------------ */}
       <nav className={styles.nav}>
         <ul className={`${styles.ul} ${menuOpen ? styles.navOpen : ""}`}>
+          {/* ❌ BOTÓN DE CIERRE EN MÓVIL */}
+          {menuOpen && (
+            <button
+              className={styles.closeButton}
+              onClick={() => setMenuOpen(false)}
+            >
+              ✕
+            </button>
+          )}
+
           <li className={styles.navItem}>
             <a href="#home" onClick={(e) => handleNavClick(e, "home")}>Inicio</a>
           </li>
+
           <li className={styles.navItem}>
             <a href="#about" onClick={(e) => handleNavClick(e, "about")}>Nosotros</a>
           </li>
+
           <li className={styles.navItem}>
             <a href="#menu" onClick={(e) => handleNavClick(e, "menu")}>Productos</a>
           </li>
+
           <li className={styles.navItem}>
             <a href="#contact" onClick={(e) => handleNavClick(e, "contact")}>Contacto</a>
           </li>
         </ul>
       </nav>
 
+      {/* ------------ BOTONES DERECHA ------------ */}
       <div className={styles.actions}>
         <button
           type="button"
           className={styles.authButton}
           onClick={handlePersonClick}
-          title={!user ? "Iniciar sesión / Registrarse" : isAdmin ? "Panel de administración" : "Panel de usuario"}
         >
           👤
         </button>
@@ -72,17 +87,17 @@ function Header({ onCartClick }) {
           type="button"
           onClick={onCartClick}
           className={styles.cartButton}
-          title="Ver carrito"
         >
           🛒
-          {totalItems > 0 && <span className={styles.cartCount}>{totalItems}</span>}
+          {totalItems > 0 && (
+            <span className={styles.cartCount}>{totalItems}</span>
+          )}
         </button>
 
         <button
           type="button"
           className={styles.menuToggle}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
         >
           ☰
         </button>
