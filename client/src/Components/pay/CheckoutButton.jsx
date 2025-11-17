@@ -52,15 +52,20 @@ export default function CheckoutButton({ items, customer, shipping }) {
       setErr("");
 
       const payload = {
-        items: normItems,        // usa unit_price
-        customer: customer || {}, 
+        items: normItems.map((it) => ({
+          title: it.title,
+          quantity: it.quantity,
+          unit_price: it.unit_price,
+          currency_id: "ARS",   // 🔥 NECESARIO PARA QUE MP NO DE NOT FOUND
+        })),
+        customer: customer || {},
         shipping: shipping || {},
       };
 
       const r = await fetch("/api/orders/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // IMPORTANTE: para enviar token
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 
