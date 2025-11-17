@@ -1,7 +1,12 @@
+// client/src/Components/CheckoutButton/CheckoutButton.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import s from "./CheckoutButton.module.css";
 
+// BACKEND DE PRODUCCIÓN (Render)
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+// PUBLIC KEY de MercadoPago
 const PUBLIC_KEY = import.meta.env.VITE_MP_PUBLIC_KEY;
 
 export default function CheckoutButton({ items, customer, shipping }) {
@@ -9,6 +14,7 @@ export default function CheckoutButton({ items, customer, shipping }) {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Normalizar items
   const normItems = useMemo(
     () =>
       (Array.isArray(items) ? items : [])
@@ -33,6 +39,7 @@ export default function CheckoutButton({ items, customer, shipping }) {
     [items]
   );
 
+  // Inicializar MP
   useEffect(() => {
     if (!PUBLIC_KEY) {
       setErr("Falta VITE_MP_PUBLIC_KEY en el frontend (.env).");
@@ -41,6 +48,7 @@ export default function CheckoutButton({ items, customer, shipping }) {
     initMercadoPago(PUBLIC_KEY, { locale: "es-AR" });
   }, []);
 
+  // Iniciar checkout
   const startCheckout = async () => {
     try {
       if (!normItems.length) {
@@ -52,25 +60,22 @@ export default function CheckoutButton({ items, customer, shipping }) {
       setErr("");
 
       const payload = {
-        items: normItems.map((it) => ({
-          title: it.title,
-          quantity: it.quantity,
-          unit_price: it.unit_price,
-          currency_id: "ARS",   // 🔥 NECESARIO PARA QUE MP NO DE NOT FOUND
-        })),
+        items: normItems,
         customer: customer || {},
         shipping: shipping || {},
       };
 
-      const r = await fetch("/api/orders/checkout", {
+      // 🔥🔥🔥 IMPORTANTE: ahora llama al backend REAL en Render
+      const r = await fetch(`${API_BASE}/api/orders/checkout`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const txt = await r.text();
       let data = {};
+
       try {
         data = txt ? JSON.parse(txt) : {};
       } catch {
