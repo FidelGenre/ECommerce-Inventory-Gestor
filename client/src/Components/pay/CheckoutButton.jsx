@@ -47,26 +47,25 @@ export default function CheckoutButton({ items, customer, shipping }) {
         setErr("No hay ítems válidos para pagar.");
         return;
       }
+
       setLoading(true);
       setErr("");
 
-      // Transformar los items al formato que el backend espera
-      const mpItems = normItems.map((it) => ({
-        title: it.title,
-        quantity: it.quantity,
-        price: it.unit_price, // backend usa "price"
-      }));
+      const payload = {
+        items: normItems,        // usa unit_price
+        customer: customer || {}, 
+        shipping: shipping || {},
+      };
 
-      const r = await fetch("/api/pay/mp", {
+      const r = await fetch("/api/orders/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ items: mpItems }),
+        credentials: "include", // IMPORTANTE: para enviar token
+        body: JSON.stringify(payload),
       });
 
       const txt = await r.text();
-
-      let data;
+      let data = {};
       try {
         data = txt ? JSON.parse(txt) : {};
       } catch {
@@ -74,14 +73,11 @@ export default function CheckoutButton({ items, customer, shipping }) {
       }
 
       if (!r.ok) {
-        throw new Error(data.error || "No se pudo crear la preferencia");
+        throw new Error(data.error || "No se pudo crear la orden");
       }
 
-      // MercadoPago puede devolver "id" o "preference_id"
-      const pref = data.id || data.preference_id;
-      if (!pref) {
-        throw new Error("No llegó preference_id");
-      }
+      const pref = data.preference_id || data.id;
+      if (!pref) throw new Error("No llegó preference_id");
 
       setPreferenceId(pref);
     } catch (e) {
