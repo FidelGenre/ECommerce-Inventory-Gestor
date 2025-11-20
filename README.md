@@ -63,27 +63,9 @@ The backend provides a clean REST API used by the storefront and admin panel.
 
 💰 Cashbox system with real-time balance
 
-📊 Dashboard with:
-
-Monthly sales
-
-Monthly purchases
-
-Net profit
-
-Current cashbox value
-
-Best selling products
-
-Top 3 of the month
+📊 Dashboard
 
 👨‍🔧 Supplier system with:
-
-Automatic total debt per supplier
-
-Purchase tracking
-
-“Paid” button to deduct from cashbox
 
 💳 MercadoPago integration (sandbox)
 
