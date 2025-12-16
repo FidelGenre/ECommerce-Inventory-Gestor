@@ -11,48 +11,16 @@
 </p>
 
 <h3>🧩 General Overview</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🏷️ Project Name</td>
-      <td>Coffee Beans</td>
-    </tr>
-    <tr>
-      <td>🛒 Type</td>
-      <td>E-commerce / Online Store</td>
-    </tr>
-    <tr>
-      <td>⚙️ Architecture</td>
-      <td>React Frontend + Express REST API + PostgreSQL</td>
-    </tr>
-    <tr>
-      <td>💾 Database</td>
-      <td>PostgreSQL (local + cloud)</td>
-    </tr>
-    <tr>
-      <td>🔐 Auth</td>
-      <td>JWT + Secure HTTPOnly Cookies</td>
-    </tr>
-    <tr>
-      <td>🚀 Deployment</td>
-      <td>Backend on Render, Frontend on Render/Vercel</td>
-    </tr>
-    <tr>
-      <td>💳 Payments</td>
-      <td>MercadoPago Sandbox + Webhooks</td>
-    </tr>
-    <tr>
-      <td>📊 Admin Panel</td>
-      <td>KPIs, analytics, and management tools</td>
-    </tr>
-  </tbody>
-</table>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+  <li><strong>🏷️ Project Name:</strong> Coffee Beans</li>
+  <li><strong>🛒 Type:</strong> E-commerce / Online Store</li>
+  <li><strong>⚙️ Architecture:</strong> React Frontend + Express REST API + PostgreSQL</li>
+  <li><strong>💾 Database:</strong> PostgreSQL (local + cloud)</li>
+  <li><strong>🔐 Auth:</strong> JWT + Secure HTTPOnly Cookies</li>
+  <li><strong>🚀 Deployment:</strong> Backend on Render, Frontend on Render/Vercel</li>
+  <li><strong>💳 Payments:</strong> MercadoPago Sandbox + Webhooks</li>
+  <li><strong>📊 Admin Panel:</strong> KPIs, analytics, and management tools</li>
+</ul>
 
 <h3>🎨 Frontend – React + Vite</h3>
 <p>
@@ -61,7 +29,7 @@
 </p>
 
 <h3>🛠️ Admin Panel (Tabs)</h3>
-<ul>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
   <li><strong>📊 Dashboard:</strong> Real-time KPIs (sales, purchases, profit) and operational overview.</li>
   <li><strong>🧾 Registros:</strong> Logs/history for auditing sales, purchases, and movements.</li>
   <li><strong>📦 Products:</strong> CRUD for products (origin, roast level, price, images).</li>
